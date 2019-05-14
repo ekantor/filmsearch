@@ -1,0 +1,16 @@
+.ResultItem {
+	cursor: pointer;
+	width: 100%;
+}
+
+.ResultItem-summary {
+	align-items: center
+}
+
+.ResultItem-summary:hover {
+	background-color: burlywood;
+}
+
+.ResultItem-panel {
+	flex-direction: column
+}

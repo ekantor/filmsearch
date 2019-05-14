@@ -1,0 +1,9 @@
+.App-container {
+	width: 100vw;
+	justify-content: center;
+}
+
+.App {
+	width: 600px;
+	align-items: center;
+}
