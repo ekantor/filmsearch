@@ -8,6 +8,7 @@ import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/styles';
+import SearchState from './types/SearchState';
 
 const useStyles = makeStyles({
 	progressContainer: {
@@ -17,10 +18,9 @@ const useStyles = makeStyles({
 	}
 });
 
-type WikiInfo = [string, string[], string[], string[]];
-
 const ResultItem = (props: { item: IMDbMovieInfo }) => {
-	const [wikiInfo, setWikiInfo] = useState(["",[],[],[]] as WikiInfo);
+	const [summary, setSummary] = useState("");
+	const [wikiLink, setWikiLink] = useState("");
 	const [fetching, setFetching] = useState(false);
 
 	const onClick = (expanded: boolean) => {
@@ -28,9 +28,13 @@ const ResultItem = (props: { item: IMDbMovieInfo }) => {
 			setFetching(true);
 			fetch(`https://en.wikipedia.org/w/api.php?action=opensearch&limit=1&format=json&redirects=resolve&origin=*&search=${props.item.Title}`)
 				.then(res => res.json())
-				.then((res: WikiInfo) => {
+				.then((res: [string, string[], string[], string[]]) => {
 					setFetching(false);
-					setWikiInfo(res);
+					if (res[2].length === 0 || res[3].length === 0) {
+						return;
+					}
+					setSummary(res[2][0]);
+					setWikiLink(res[3][0]);
 				})
 				.catch((error: any) => {
 					setFetching(false);
@@ -52,12 +56,12 @@ const ResultItem = (props: { item: IMDbMovieInfo }) => {
 			<ExpansionPanelDetails >
 				{fetching ? 
 				 	<div className={classes.progressContainer}><CircularProgress /></div> : 
-					<Typography>{wikiInfo[2].length > 0 ? wikiInfo[2][0] : "Summary not found."}</Typography> 
+					<Typography>{summary.length ? summary : "Summary not found."}</Typography> 
 				}
 			</ExpansionPanelDetails>
 			<ExpansionPanelActions>
 				<Button href={"https://www.imdb.com/title/" + props.item.imdbID} target="_blank" rel="noopener">IMDb</Button>
-				{wikiInfo[3].length > 0 && <Button href={wikiInfo[3][0]} target="_blank" rel="noopener">Wikipedia</Button>}
+				{wikiLink.length && <Button href={wikiLink} target="_blank" rel="noopener">Wikipedia</Button>}
 			</ExpansionPanelActions>
 		</ExpansionPanel>
 	);
