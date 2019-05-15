@@ -28,27 +28,27 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 const App = () => {
-	const [state, setState] = useState(SearchState.Initial);
-	const [items, setItems] = useState([] as IMDbMovieInfo[]);
+	const [searchState, setSearchState] = useState(SearchState.Initial);
+	const [resultItems, setResultItems] = useState([] as IMDbMovieInfo[]);
 
 	const onSubmitSearch = (text: string) => {
 		if (text.length === 0) {
 			return;
 		}
-		setState(SearchState.Fetching);
+		setSearchState(SearchState.Fetching);
 		const apikey = "942359b8";
 		fetch(`https://www.omdbapi.com/?apikey=${apikey}&type=movie&s=${text}`)
 			.then(res => res.json())
 			.then((response: IMDbResponse) => {
 				if (response.Response !== "True") {
-					setState(SearchState.NotFound);
+					setSearchState(SearchState.NotFound);
 					return;
 				}
-				setState(SearchState.Found);
-				setItems(response.Search);
+				setSearchState(SearchState.Found);
+				setResultItems(response.Search);
 			})
 			.catch((error: any) => {
-				setState(SearchState.Error);
+				setSearchState(SearchState.Error);
 				console.error('Error:', error)
 			});
 	}
@@ -67,7 +67,7 @@ const App = () => {
 						<SearchBar onSubmit={onSubmitSearch} />
 					</Toolbar>
 				</AppBar>
-				<ResultList state={state} items={items} />
+				<ResultList state={searchState} items={resultItems} />
 			</div>
 		</React.Fragment>
 	);
