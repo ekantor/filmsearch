@@ -1,5 +1,4 @@
 import React from 'react';
-import './ResultItem.css';
 import MovieDetails from './MovieDetails';
 import Link from '@material-ui/core/Link';
 
@@ -8,7 +7,7 @@ const DetailPanel = (props: { movieDetails: MovieDetails, imdbId: string }) => {
 		return <Link href={"https://www.imdb.com/title/" + props.imdbId} target="_blank" rel="noopener">IMDb</Link>;
 
 	return (
-		<div className='column'>
+		<div>
 			<div>{props.movieDetails[2][0]}</div>
 			<div>
 				<Link href={"https://www.imdb.com/title/" + props.imdbId} target="_blank" rel="noopener">IMDb</Link>

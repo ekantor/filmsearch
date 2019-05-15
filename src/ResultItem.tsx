@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import MovieInfo from './MovieInfo';
-import './ResultItem.css';
 import MovieDetails from './MovieDetails';
 import DetailPanel from './DetailPanel';
 import { ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Typography } from '@material-ui/core';
