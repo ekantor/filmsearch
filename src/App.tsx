@@ -13,7 +13,7 @@ import { Theme } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) => ({
 	root: {
-	  width: '100vw',
+	  width: '100%',
 	  justifyContent: 'center',
 	  alignItems: 'center',
 	  display: 'flex',

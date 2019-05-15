@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ResponseData from './ResponseData';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';

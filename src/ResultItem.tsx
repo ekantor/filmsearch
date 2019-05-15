@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import MovieInfo from './MovieInfo';
-import MovieDetails from './MovieDetails';
-import DetailPanel from './DetailPanel';
-import { ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Typography } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
+import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
+
+type MovieDetails = [string, string[], string[], string[]];
 
 const ResultItem = (props: { item: MovieInfo }) => {
 	const [details, setDetails] = useState(["",[],[],[]] as MovieDetails);
@@ -36,9 +41,13 @@ const ResultItem = (props: { item: MovieInfo }) => {
 			<ExpansionPanelDetails >
 				{fetching ? 
 				 	<div style={{display: 'flex', flex: 1, justifyContent: 'center'}}><CircularProgress /></div> : 
-					<DetailPanel movieDetails={details} imdbId={props.item.imdbID}/>
+					<Typography>{details[2].length > 0 ? details[2][0] : "Summary not found."}</Typography> 
 				}
 			</ExpansionPanelDetails>
+			<ExpansionPanelActions>
+				<Link href={"https://www.imdb.com/title/" + props.item.imdbID} target="_blank" rel="noopener">IMDb</Link>
+				{details[3].length > 0 && <Link href={details[3][0]} target="_blank" rel="noopener">Wikipedia</Link>}
+			</ExpansionPanelActions>
 		</ExpansionPanel>
 	);
 }

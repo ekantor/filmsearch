@@ -7,7 +7,11 @@ import * as serviceWorker from './serviceWorker';
 import { createMuiTheme } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
 
-const theme = createMuiTheme();
+const theme = createMuiTheme({
+	typography: {
+	  	useNextVariants: true,
+	},
+});
 
 const Theming = () => {
 	return (
