@@ -1,13 +1,16 @@
 import React from 'react';
 import MovieInfo from './MovieInfo';
 import ResultItem from './ResultItem';
+import SearchState from './SearchState';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Typography from '@material-ui/core/Typography';
 
-const ResultList = (props: { items: MovieInfo[] }) => {
-	if (props.items.length === 0) {
-		return (
-			<div>No results found</div>
-		)
-	} else {
+const ResultList = (props: { state: SearchState, items: MovieInfo[] }) => {
+	if (props.state == SearchState.Initial) {
+		return null;
+	} else if (props.state == SearchState.Fetching) {
+		return <CircularProgress style={{ marginTop: '1rem' }}/>;
+	} else if (props.state == SearchState.Found) {
 		return (
 			<div style={{width: '100%'}}>
 				{props.items.map(item =>
@@ -15,6 +18,10 @@ const ResultList = (props: { items: MovieInfo[] }) => {
 				)}
 			</div>
 		);
+	} else if (props.state == SearchState.NotFound) {
+		return <Typography variant='h6'>No results found.</Typography>;
+	} else {
+		return <Typography variant='h6'>An error occurred during search.</Typography>;
 	}
 }
 

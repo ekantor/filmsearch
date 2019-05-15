@@ -7,11 +7,20 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/styles';
 
-type MovieDetails = [string, string[], string[], string[]];
+const useStyles = makeStyles({
+	progressContainer: {
+		display: 'flex',
+		flex: 1,
+		justifyContent: 'center'
+	}
+});
+
+type WikiInfo = [string, string[], string[], string[]];
 
 const ResultItem = (props: { item: MovieInfo }) => {
-	const [details, setDetails] = useState(["",[],[],[]] as MovieDetails);
+	const [wikiInfo, setWikiInfo] = useState(["",[],[],[]] as WikiInfo);
 	const [fetching, setFetching] = useState(false);
 
 	const onClick = (expanded: boolean) => {
@@ -19,9 +28,9 @@ const ResultItem = (props: { item: MovieInfo }) => {
 			setFetching(true);
 			fetch(`https://en.wikipedia.org/w/api.php?action=opensearch&limit=1&format=json&redirects=resolve&origin=*&search=${props.item.Title}`)
 				.then(res => res.json())
-				.then((res: MovieDetails) => {
+				.then((res: WikiInfo) => {
 					setFetching(false);
-					setDetails(res);
+					setWikiInfo(res);
 				})
 				.catch((error: any) => {
 					setFetching(false);
@@ -29,6 +38,8 @@ const ResultItem = (props: { item: MovieInfo }) => {
 				});
 		}
 	}
+
+	const classes = useStyles();
 
 	return (
 		<ExpansionPanel onChange={(event: object, expanded: boolean) => onClick(expanded)}>
@@ -40,13 +51,13 @@ const ResultItem = (props: { item: MovieInfo }) => {
 			</ExpansionPanelSummary>
 			<ExpansionPanelDetails >
 				{fetching ? 
-				 	<div style={{display: 'flex', flex: 1, justifyContent: 'center'}}><CircularProgress /></div> : 
-					<Typography>{details[2].length > 0 ? details[2][0] : "Summary not found."}</Typography> 
+				 	<div className={classes.progressContainer}><CircularProgress /></div> : 
+					<Typography>{wikiInfo[2].length > 0 ? wikiInfo[2][0] : "Summary not found."}</Typography> 
 				}
 			</ExpansionPanelDetails>
 			<ExpansionPanelActions>
 				<Button href={"https://www.imdb.com/title/" + props.item.imdbID} target="_blank" rel="noopener">IMDb</Button>
-				{details[3].length > 0 && <Button href={details[3][0]} target="_blank" rel="noopener">Wikipedia</Button>}
+				{wikiInfo[3].length > 0 && <Button href={wikiInfo[3][0]} target="_blank" rel="noopener">Wikipedia</Button>}
 			</ExpansionPanelActions>
 		</ExpansionPanel>
 	);
