@@ -6,7 +6,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import Button from '@material-ui/core/Button';
 
 type MovieDetails = [string, string[], string[], string[]];
 
@@ -45,8 +45,8 @@ const ResultItem = (props: { item: MovieInfo }) => {
 				}
 			</ExpansionPanelDetails>
 			<ExpansionPanelActions>
-				<Link href={"https://www.imdb.com/title/" + props.item.imdbID} target="_blank" rel="noopener">IMDb</Link>
-				{details[3].length > 0 && <Link href={details[3][0]} target="_blank" rel="noopener">Wikipedia</Link>}
+				<Button href={"https://www.imdb.com/title/" + props.item.imdbID} target="_blank" rel="noopener">IMDb</Button>
+				{details[3].length > 0 && <Button href={details[3][0]} target="_blank" rel="noopener">Wikipedia</Button>}
 			</ExpansionPanelActions>
 		</ExpansionPanel>
 	);
