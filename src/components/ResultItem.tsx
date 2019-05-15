@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import MovieInfo from './MovieInfo';
+import MovieInfo from './types/MovieInfo';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';

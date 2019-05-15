@@ -1,7 +1,7 @@
 import React from 'react';
-import MovieInfo from './MovieInfo';
+import MovieInfo from './types/MovieInfo';
 import ResultItem from './ResultItem';
-import SearchState from './SearchState';
+import SearchState from './types/SearchState';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/styles';

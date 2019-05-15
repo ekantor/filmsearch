@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import SearchBar from './SearchBar';
-import MovieInfo from './MovieInfo';
-import ResultList from './ResultList';
-import ResponseData from './ResponseData';
+import SearchBar from './components/SearchBar';
+import MovieInfo from './components/types/MovieInfo';
+import ResultList from './components/ResultList';
+import ResponseData from './components/types/ResponseData';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/styles';
 import { Theme } from '@material-ui/core';
-import SearchState from './SearchState';
+import SearchState from './components/types/SearchState';
 
 const useStyles = makeStyles((theme: Theme) => ({
 	root: {
