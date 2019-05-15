@@ -8,7 +8,6 @@ import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/styles';
-import SearchState from './types/SearchState';
 
 const useStyles = makeStyles({
 	progressContainer: {
