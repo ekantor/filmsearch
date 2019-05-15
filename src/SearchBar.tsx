@@ -6,29 +6,18 @@ import Button from '@material-ui/core/Button';
 import { withStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 
-const SearchBar = (props: { 
-	classes: any,
-	onResult: (response: ResponseData) => void, 
-	onError: (error: any) => void }) => 
-{
+const SearchBar = (props: { classes: any, onSubmit: (text: string) => void }) => {
 	const [value, setValue] = useState("");
 
 	const onSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		if (value.length === 0) {
-			return;
-		}
-		const apikey = "942359b8";
-		fetch(`https://www.omdbapi.com/?apikey=${apikey}&type=movie&s=${value}`)
-			.then(res => res.json())
-			.then(props.onResult)
-			.catch(props.onError);
+		props.onSubmit(value);
 	}
 
     const { classes } = props;
 	return (
 		<div>
-			<form onSubmit={onSubmit} style={{ display: "inherit", margin: "inherit", padding: "inherit" }}>
+			<form onSubmit={onSubmit} style={{display: 'flex'}}>
 				<div className={classes.search}>
 					<div className={classes.searchIcon}>
 						<SearchIcon />
@@ -51,7 +40,7 @@ const SearchBar = (props: {
 }
 
 const styles = (theme: Theme) => createStyles({
-	search: {
+	search: { 
 	  position: 'relative',
 	  borderRadius: theme.shape.borderRadius,
 	  backgroundColor: fade(theme.palette.common.white, 0.15),
@@ -62,7 +51,7 @@ const styles = (theme: Theme) => createStyles({
 	  marginLeft: 0,
 	  [theme.breakpoints.up('sm')]: {
 		marginLeft: theme.spacing.unit * 3,
-		width: 'auto',
+		width: '50vw',
 	  },
 	},
 	searchIcon: {

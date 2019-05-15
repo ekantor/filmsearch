@@ -12,10 +12,6 @@ code {
     monospace;
 }
 
-div {
-  display: flex
-}
-
 .column {
   flex-direction: column
 }

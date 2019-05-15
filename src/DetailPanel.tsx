@@ -5,7 +5,7 @@ import Link from '@material-ui/core/Link';
 
 const DetailPanel = (props: { movieDetails: MovieDetails, imdbId: string }) => {
 	if (props.movieDetails[2].length === 0) 
-		return null;
+		return <Link href={"https://www.imdb.com/title/" + props.imdbId} target="_blank" rel="noopener">IMDb</Link>;
 
 	return (
 		<div className='column'>
