@@ -1,5 +1,5 @@
 import React from 'react';
-import MovieInfo from './types/MovieInfo';
+import IMDbMovieInfo from './types/IMDbMovieInfo';
 import ResultItem from './ResultItem';
 import SearchState from './types/SearchState';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -12,7 +12,7 @@ const useStyles = makeStyles({
 	}
 });
 
-const ResultList = (props: { state: SearchState, items: MovieInfo[] }) => {
+const ResultList = (props: { state: SearchState, items: IMDbMovieInfo[] }) => {
 	const classes = useStyles();
 
 	if (props.state === SearchState.Initial) {

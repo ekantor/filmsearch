@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import MovieInfo from './types/MovieInfo';
+import IMDbMovieInfo from './types/IMDbMovieInfo';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 
 type WikiInfo = [string, string[], string[], string[]];
 
-const ResultItem = (props: { item: MovieInfo }) => {
+const ResultItem = (props: { item: IMDbMovieInfo }) => {
 	const [wikiInfo, setWikiInfo] = useState(["",[],[],[]] as WikiInfo);
 	const [fetching, setFetching] = useState(false);
 

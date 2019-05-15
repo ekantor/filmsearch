@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import SearchBar from './components/SearchBar';
-import MovieInfo from './components/types/MovieInfo';
+import IMDbMovieInfo from './components/types/IMDbMovieInfo';
 import ResultList from './components/ResultList';
-import ResponseData from './components/types/ResponseData';
+import IMDbResponse from './components/types/IMDbResponse';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const App = () => {
 	const [state, setState] = useState(SearchState.Initial);
-	const [items, setItems] = useState([] as MovieInfo[]);
+	const [items, setItems] = useState([] as IMDbMovieInfo[]);
 
 	const onSubmitSearch = (text: string) => {
 		if (text.length === 0) {
@@ -39,7 +39,7 @@ const App = () => {
 		const apikey = "942359b8";
 		fetch(`https://www.omdbapi.com/?apikey=${apikey}&type=movie&s=${text}`)
 			.then(res => res.json())
-			.then((response: ResponseData) => {
+			.then((response: IMDbResponse) => {
 				if (response.Response !== "True") {
 					setState(SearchState.NotFound);
 					return;
