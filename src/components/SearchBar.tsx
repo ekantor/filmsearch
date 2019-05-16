@@ -3,8 +3,8 @@ import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-import { makeStyles } from '@material-ui/styles';
-import { Theme } from '@material-ui/core';
+import makeStyles from '@material-ui/styles/makeStyles';
+import { Theme } from '@material-ui/core/styles/createMuiTheme';
 
 const useStyles = makeStyles((theme: Theme) => ({
 	search: {

@@ -7,8 +7,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { makeStyles } from '@material-ui/styles';
-import { Theme } from '@material-ui/core';
+import makeStyles from '@material-ui/styles/makeStyles';
+import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import SearchState from './components/types/SearchState';
 
 const useStyles = makeStyles((theme: Theme) => ({
